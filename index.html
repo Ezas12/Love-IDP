@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun Sayang ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    overflow-x:hidden;
+    color:white;
+}
+
+.section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+p{
+    max-width:700px;
+    line-height:1.8;
+    font-size:1.1rem;
+}
+
+.btn{
+    margin-top:25px;
+    padding:15px 30px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#ff4f81;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.photo{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:20px;
+    border:5px solid white;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    margin:20px;
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.message-box{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    border-radius:20px;
+    margin-top:20px;
+}
+
+.final{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.heart{
+    position:fixed;
+    top:-20px;
+    color:white;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
+</head>
+<body>
+
+<section class="section">
+    <h1>🎂 Selamat Ulang Tahun Sayang ❤️</h1>
+    <p>
+        Hari ini adalah hari spesialmu.
+        Aku ingin memberikan sesuatu yang sederhana,
+        tetapi dibuat dengan penuh cinta untukmu.
+    </p>
+
+    <button class="btn" onclick="scrollToSection('surprise')">
+        Buka Kejutan ❤️
+    </button>
+</section>
+
+<section class="section" id="surprise">
+    <h2>💖 Untuk Kamu</h2>
+
+    <!-- Ganti foto1.jpg dengan foto kalian -->
+    <img src="foto1.jpg" class="photo">
+
+    <div class="message-box">
+        <p>
+            Terima kasih sudah hadir dalam hidupku.
+            Terima kasih untuk semua tawa, cerita,
+            perhatian, dan kebahagiaan yang kamu berikan.
+            Semoga di usia yang baru ini,
+            semua impianmu satu per satu terwujud.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <h2>📸 Kenangan Kita</h2>
+
+    <div class="gallery">
+        <img src="foto1.jpeg" class="photo">
+        <img src="foto2.jpeg" class="photo">
+        <img src="foto3.jpeg" class="photo">
+    </div>
+</section>
+
+<section class="section">
+    <h2>💌 Pesan Untukmu</h2>
+
+    <div class="message-box">
+        <p>
+            Aku mungkin tidak selalu sempurna,
+            tetapi aku selalu bersyukur karena dipertemukan denganmu.
+
+            Semoga kesehatan, kebahagiaan,
+            rezeki, dan semua hal baik selalu menyertaimu.
+
+            Tetaplah menjadi dirimu yang selama ini
+            membuat hari-hariku lebih berwarna.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="final">
+        ❤️ Aku Sayang Kamu ❤️
+        <br><br>
+        Selamat Ulang Tahun 🎉
+    </div>
+</section>
+
+<script>
+
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({
+        behavior:'smooth'
+    });
+}
+
+function createHeart(){
+    const heart=document.createElement('div');
+
+    heart.classList.add('heart');
+    heart.innerHTML='❤️';
+
+    heart.style.left=Math.random()*100+'vw';
+    heart.style.fontSize=(Math.random()*20+15)+'px';
+
+    const duration=Math.random()*3+3;
+    heart.style.animationDuration=duration+'s';
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },duration*1000);
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
