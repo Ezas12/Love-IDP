@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Selamat Ulang Tahun Sayang ❤️</title>
 
+  <meta property="og:title" content="Selamat Ulang Tahun Sayang ❤️" />
+  <meta property="og:description" content="Ada kejutan kecil dan pesan spesial yang aku buat khusus untuk kamu. Buka yuk! ✨" />
+  <meta property="og:image" content="foto1.jpeg" />
+  <meta property="og:type" content="website" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -71,7 +76,6 @@
       from {
         transform: scale(1) translate(0, 0);
       }
-
       to {
         transform: scale(1.14) translate(-3%, 2%);
       }
@@ -138,7 +142,6 @@
         opacity: 0;
         transform: translateY(20px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -374,15 +377,12 @@
       .page {
         padding-top: 20px;
       }
-
       .message-box {
         padding: 18px;
       }
-
       .gallery {
         gap: 10px;
       }
-
       .photo-card {
         width: min(145px, 42vw);
       }
@@ -391,7 +391,10 @@
 </head>
 
 <body>
-  <!-- HALAMAN 1 -->
+  <audio id="bgm" loop>
+    <source src="lagu-romantis.mp3" type="audio/mpeg" />
+  </audio>
+
   <section class="page active">
     <div class="content">
       <div class="mini-title">🎀 Ada sesuatu untuk kamu</div>
@@ -409,14 +412,12 @@
     </div>
   </section>
 
-  <!-- HALAMAN 2 -->
   <section class="page">
     <div class="content">
       <div class="mini-title">💖 Halaman 2 dari 5</div>
 
       <h2>Untuk Kamu yang Spesial</h2>
 
-      <!-- Pastikan nama foto sesuai dengan file di folder project -->
       <img src="foto1.jpeg" class="photo-main" alt="Foto spesial kita" />
 
       <div class="message-box">
@@ -429,7 +430,6 @@
     </div>
   </section>
 
-  <!-- HALAMAN 3 -->
   <section class="page">
     <div class="content">
       <div class="mini-title">📸 Halaman 3 dari 5</div>
@@ -448,7 +448,6 @@
     </div>
   </section>
 
-  <!-- HALAMAN 4 -->
   <section class="page">
     <div class="content">
       <div class="mini-title">💌 Halaman 4 dari 5</div>
@@ -470,7 +469,6 @@
     </div>
   </section>
 
-  <!-- HALAMAN 5 -->
   <section class="page">
     <div class="content">
       <div class="mini-title">🎉 Halaman terakhir</div>
@@ -491,7 +489,6 @@
     </div>
   </section>
 
-  <!-- Navigasi bawah -->
   <div class="navigation">
     <button class="nav-btn" id="prevBtn" onclick="prevPage()" disabled>
       ‹
@@ -509,6 +506,7 @@
     const dotsContainer = document.getElementById("dots");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const bgm = document.getElementById("bgm");
 
     let currentPage = 0;
 
@@ -528,6 +526,13 @@
     function showPage(index) {
       if (index < 0 || index >= pages.length) return;
 
+      // Putar musik saat pengguna mulai berpindah dari halaman pertama
+      if (index > 0 && bgm.paused) {
+        bgm.play().catch(error => {
+          console.log("Musik diblokir otomatis oleh browser sebelum interaksi.");
+        });
+      }
+
       pages.forEach((page, i) => {
         page.classList.remove("active", "previous");
 
@@ -543,7 +548,6 @@
       currentPage = index;
 
       const dots = document.querySelectorAll(".dot");
-
       dots.forEach((dot, i) => {
         dot.classList.toggle("active", i === currentPage);
       });
@@ -572,7 +576,6 @@
       if (event.key === "ArrowRight") {
         nextPage();
       }
-
       if (event.key === "ArrowLeft") {
         prevPage();
       }
@@ -599,7 +602,12 @@
       }, duration * 1000);
     }
 
-    setInterval(createHeart, 500);
+    // Hanya buat hati jika tab sedang aktif dilihat (menghemat baterai/ram hp)
+    setInterval(() => {
+      if (!document.hidden) {
+        createHeart();
+      }
+    }, 500);
 
     // Confetti saat tombol kejutan terakhir dipencet
     function celebrate() {
@@ -609,8 +617,7 @@
         const confetti = document.createElement("div");
         confetti.classList.add("confetti");
 
-        confetti.innerHTML =
-          emojis[Math.floor(Math.random() * emojis.length)];
+        confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
 
         confetti.style.left = Math.random() * 100 + "vw";
         confetti.style.fontSize = Math.random() * 20 + 15 + "px";
