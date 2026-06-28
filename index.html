@@ -27,8 +27,8 @@
     body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: 0.18; background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px); background-position: 0 0, 20px 20px; background-size: 40px 40px; }
     @keyframes pinkGlow { from { transform: scale(1) translate(0, 0); } to { transform: scale(1.14) translate(-3%, 2%); } }
 
-    /* Semua halaman: Ditambahkan overflow-x: hidden agar tidak bisa digeser ke samping */
-    .page { position: absolute; inset: 0; height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 18px 95px; opacity: 0; visibility: hidden; transform: translateX(60px); transition: opacity 0.55s ease, transform 0.55s ease; overflow-y: auto; overflow-x: hidden; }
+    /* Semua halaman: Jarak bawah 95px DIHAPUS agar pas di tengah dan tidak bisa di-scroll */
+    .page { position: absolute; inset: 0; height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 18px; opacity: 0; visibility: hidden; transform: translateX(60px); transition: opacity 0.55s ease, transform 0.55s ease; overflow-y: auto; overflow-x: hidden; }
     .page.active { opacity: 1; visibility: visible; transform: translateX(0); z-index: 2; }
     .page.previous { transform: translateX(-60px); }
     .page::before, .page::after { content: "❤"; position: absolute; opacity: 0.12; font-size: 150px; z-index: -1; pointer-events: none; }
